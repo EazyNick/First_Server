@@ -40,7 +40,7 @@ int main() {
         // socket을 통해 클라이언트로 데이터를 보냅니다. 
         // "Hello, client!\n" 문자열을 boost::asio::buffer를 사용하여 버퍼로 변환하고, 
         // boost::asio::write 함수로 이 데이터를 클라이언트에게 전송
-        boost::asio::write(socket, boost::asio::buffer("Hello, client!\n"));
+        boost::asio::write(socket, boost::asio::buffer("Hello, client! 한글돼!\n"));
     }
     catch (std::exception& e) {
         //e.what()은 발생한 예외에 대한 설명을 문자열로 반환합니다. 
