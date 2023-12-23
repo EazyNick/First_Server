@@ -5,12 +5,15 @@
 using boost::asio::ip::tcp;
 
 int main() {
+
+    unsigned short Port_Number = 12333;
+
     try {
-        //네트워킹 작업에 필요한 I/O 서비스. 네트워크 작업을 위한 중심적인 객체로, 비동기 작업을 관리하는 데 사용
+        //네트워킹 작업에 필요한 I/O 서비스. 네트워크 작업을 위한 중심적인 객체로, 비동기(독립) 작업을 관리하는 데 사용
         boost::asio::io_service io_service;
         // tcp::acceptor 객체는 클라이언트의 연결을 수락(accept)하기 위한 객체입니다. 
         // 이 코드는 IPv4 주소를 사용하고, 12345 포트에서 연결을 기다리도록 acceptor를 초기화
-        tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), 12333));
+        tcp::acceptor acceptor(io_service, tcp::endpoint(tcp::v4(), Port_Number));
         //객체는 TCP 연결을 위한 소켓을 생성합니다. io_service를 이용하여 이 소켓을 생성
         tcp::socket socket(io_service);
         //메소드는 클라이언트의 연결을 동기적으로 수락합니다. 
