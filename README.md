@@ -1,105 +1,105 @@
-# First_Server Project
+# First_Server 프로젝트
 
-This repository contains a basic server application implemented in C++ using the Boost Asio library. It demonstrates setting up a TCP server that accepts connections from clients and responds with a simple message.
+이 저장소는 Boost Asio 라이브러리를 사용하여 C++로 구현된 간단한 서버 애플리케이션을 포함하고 있습니다. 이 프로젝트는 클라이언트 연결을 수락하고 간단한 메시지로 응답하는 TCP 서버를 설정하는 예제를 제공합니다.
 
-## Project Structure
+## 프로젝트 구조
 
-- `First_Server.sln` : Solution file for Visual Studio.
-- `First_Server.cpp`: Main entry for a basic TCP server.
-- `Server.cpp`: An extended server example with asynchronous read and write capabilities, utilizing Boost Asio's asynchronous features.
+- `First_Server.sln` : Visual Studio 솔루션 파일.
+- `First_Server.cpp`: 기본 TCP 서버의 메인 파일.
+- `Server.cpp`: Boost Asio의 비동기 기능을 활용한 확장형 서버 예제.
 
-## Requirements
+## 요구 사항
 
-- **Boost Library**: This project requires the Boost Asio library for networking functionalities. Ensure you have Boost installed on your system.
-- **C++17**: The code utilizes modern C++17 features, so it requires a compatible compiler (e.g., GCC, Clang, or MSVC).
-- **Visual Studio**: This project is configured with Visual Studio 17.8, but can be built with other C++ IDEs with minor adjustments.
+- **Boost 라이브러리**: 이 프로젝트는 네트워크 기능을 위해 Boost Asio 라이브러리가 필요합니다. 시스템에 Boost가 설치되어 있어야 합니다.
+- **C++17**: 코드에서 C++17 기능을 사용하므로 호환되는 컴파일러(GCC, Clang 또는 MSVC)가 필요합니다.
+- **Visual Studio**: 이 프로젝트는 Visual Studio 17.8 버전으로 구성되었으며, 다른 C++ IDE에서도 약간의 조정으로 빌드 가능합니다.
 
-## Features
+## 기능
 
 ### First_Server.cpp
 
-The `First_Server.cpp` file contains a basic TCP server setup:
-- **Port Number**: The server listens on port `12333`.
-- **Synchronous Operation**: The server uses synchronous read and write operations for simplicity.
-- **Client Interaction**: When a client connects, the server reads data sent by the client and responds with a message, "Hello, client! 한글돼!", demonstrating UTF-8 support.
-- **Error Handling**: It includes basic error handling and logs errors to the console.
+`First_Server.cpp` 파일은 간단한 TCP 서버 설정을 포함합니다:
+- **포트 번호**: 서버는 포트 `12333`에서 수신 대기합니다.
+- **동기화 작업**: 간단한 구현을 위해 동기화된 읽기 및 쓰기 작업을 사용합니다.
+- **클라이언트 상호작용**: 클라이언트가 연결되면 서버는 클라이언트가 보낸 데이터를 읽고 "Hello, client! 한글돼!" 메시지로 응답하여 UTF-8 지원을 보여줍니다.
+- **오류 처리**: 기본적인 오류 처리를 포함하며 콘솔에 오류를 출력합니다.
 
 ### Server.cpp
 
-The `Server.cpp` file demonstrates an advanced TCP server with asynchronous handling:
-- **Port Number**: Listens on port `51236`.
-- **Asynchronous Operation**: Uses asynchronous `read` and `write` operations to handle multiple client connections concurrently.
-- **Session Management**: Each client connection is managed by a `session` class, allowing the server to handle multiple clients simultaneously.
-- **I/O Event Loop**: The `io_service.run()` function manages asynchronous events, providing a non-blocking event loop.
+`Server.cpp` 파일은 비동기 처리를 지원하는 고급 TCP 서버를 구현합니다:
+- **포트 번호**: 포트 `51236`에서 수신 대기합니다.
+- **비동기 작업**: 비동기 `읽기` 및 `쓰기` 작업을 통해 여러 클라이언트 연결을 동시에 처리합니다.
+- **세션 관리**: 각 클라이언트 연결은 `session` 클래스에서 관리되어 여러 클라이언트를 동시에 처리할 수 있습니다.
+- **I/O 이벤트 루프**: `io_service.run()` 함수가 비동기 이벤트를 관리하며 비차단 이벤트 루프를 제공합니다.
 
-## Usage
+## 사용 방법
 
-### Compiling the Project
+### 프로젝트 컴파일
 
-To compile and run this project, ensure that you have the Boost library installed and set up in your development environment.
+Boost 라이브러리가 설치되어 있어야 하며, 개발 환경에 올바르게 설정되어 있어야 합니다.
 
-#### Using Visual Studio
+#### Visual Studio 사용 시
 
-1. Open `First_Server.sln` in Visual Studio.
-2. Choose the build configuration (`Debug` or `Release`).
-3. Build and run the solution.
+1. `First_Server.sln`을 Visual Studio에서 엽니다.
+2. 빌드 구성(`Debug` 또는 `Release`)을 선택합니다.
+3. 솔루션을 빌드하고 실행합니다.
 
-#### Using Command Line (Linux / MacOS)
+#### 명령줄(Linux / MacOS) 사용 시
 
-1. Install Boost libraries if not installed:
+1. Boost 라이브러리가 설치되어 있지 않다면 설치합니다:
     ```bash
     sudo apt-get install libboost-all-dev
     ```
-2. Compile the project:
+2. 프로젝트를 컴파일합니다:
     ```bash
     g++ -o First_Server First_Server.cpp -lboost_system -lpthread
     g++ -o Async_Server Server.cpp -lboost_system -lpthread
     ```
-3. Run the executables:
+3. 실행 파일을 실행합니다:
     ```bash
     ./First_Server
     ./Async_Server
     ```
 
-### Running the Server
+### 서버 실행
 
-1. After starting the server, it listens on the designated port (12333 for `First_Server`, 51236 for `Server`).
-2. Connect a client (such as `telnet` or a custom client script) to the server using:
+1. 서버를 시작하면 지정된 포트(12333은 `First_Server`, 51236은 `Server`)에서 연결을 수락합니다.
+2. 클라이언트를 연결하려면(`telnet` 또는 사용자 지정 클라이언트 스크립트 등) 다음과 같이 사용합니다:
     ```bash
     telnet localhost 12333
     ```
-   or for the asynchronous server:
+   비동기 서버의 경우:
     ```bash
     telnet localhost 51236
     ```
 
-3. The server will respond with a welcome message and print any data received from the client.
+3. 서버는 환영 메시지로 응답하고 클라이언트가 보낸 데이터를 출력합니다.
 
-## Code Overview
+## 코드 설명
 
-### First_Server.cpp Code Highlights
+### First_Server.cpp 주요 코드
 
-- **Boost Asio TCP Acceptor**: Sets up a TCP connection on port 12333.
-- **Data Handling**: Reads data sent by the client in a synchronous manner and sends a "Hello, client!" message back.
-- **Error Management**: Any error encountered during reading or writing is thrown and handled with an exception message.
+- **Boost Asio TCP 수락기**: 포트 12333에서 TCP 연결을 설정합니다.
+- **데이터 처리**: 클라이언트가 보낸 데이터를 동기화 방식으로 읽고 "Hello, client!" 메시지를 보냅니다.
+- **오류 관리**: 읽기 또는 쓰기 중 발생하는 오류를 처리하고 예외 메시지를 출력합니다.
 
-### Server.cpp Code Highlights
+### Server.cpp 주요 코드
 
-- **Session Class**: Manages individual client sessions, allowing asynchronous read and write.
-- **Async Accept and IO Handling**: Uses async handlers to continuously accept and manage incoming connections.
-- **Thread Safety**: Utilizes `shared_from_this` to safely handle asynchronous operations.
+- **세션 클래스**: 개별 클라이언트 세션을 관리하여 비동기 읽기 및 쓰기를 지원합니다.
+- **비동기 수락 및 I/O 처리**: 비동기 핸들러를 사용하여 지속적으로 들어오는 연결을 수락하고 관리합니다.
+- **스레드 안전성**: `shared_from_this`를 사용하여 비동기 작업을 안전하게 처리합니다.
 
-## Troubleshooting
+## 문제 해결
 
-- **Boost Library Issues**: Ensure Boost is correctly installed and linked. Common issues arise if the linker does not find Boost Asio or if incompatible Boost versions are used.
-- **Port Conflicts**: If the port is in use, modify the port number in the code or free the port.
-- **Permissions**: On some systems, binding to a port may require elevated privileges. Run with `sudo` if necessary.
+- **Boost 라이브러리 문제**: Boost가 올바르게 설치 및 연결되었는지 확인하십시오. 링크 오류는 Boost Asio를 찾지 못하거나 호환되지 않는 Boost 버전을 사용할 때 발생할 수 있습니다.
+- **포트 충돌**: 포트가 이미 사용 중인 경우 코드에서 포트 번호를 수정하거나 포트를 해제하십시오.
+- **권한 문제**: 일부 시스템에서는 포트를 바인딩하려면 관리자 권한이 필요할 수 있습니다. 필요한 경우 `sudo`로 실행하세요.
 
-## License
+## 라이선스
 
-This project is open-source and licensed under the MIT License.
+이 프로젝트는 MIT 라이선스에 따라 오픈 소스로 제공됩니다.
 
-## Acknowledgments
+## 감사의 말
 
-- Boost Asio documentation and examples provided guidance on implementing asynchronous server features.
-- UTF-8 encoding handled to ensure message readability for international characters.
+- Boost Asio 문서와 예제는 비동기 서버 기능 구현에 큰 도움이 되었습니다.
+- 국제 문자를 위해 UTF-8 인코딩을 처리하여 메시지 가독성을 높였습니다.
